@@ -1,3 +1,5 @@
+// DS18B20 waterproof temperature sensor for soil monitoring
+
 #ifndef SENSOR_DS18B20_H
 #define SENSOR_DS18B20_H
 
@@ -7,11 +9,13 @@
 
 class Sensor_DS18B20 : public Sensor_Float {
 public:
+    // Constructor: id, name, pin, retain
     Sensor_DS18B20(const char* id, const char* name, uint8_t pin, bool retain);
 
 protected:
-    // Override the readFloat method from the base class
+    // Read temperature in Celsius
     float readFloat() override;
+    // Initialize sensor
     void setup() override;
 
 private:

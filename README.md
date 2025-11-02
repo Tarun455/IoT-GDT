@@ -31,7 +31,7 @@ A comprehensive soil monitoring solution built with the Frugal-IoT framework for
 
 | Component | Pin | Notes |
 |-----------|-----|-------|
-| Soil Moisture | GPIO 3 | Analog input |
+| Soil Moisture | GPIO 32 | Analog input |
 | DS18B20 | GPIO 5 | OneWire with 4.7kΩ pullup |
 | SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| Default address 0x44 (configurable to 0x45) |
 
