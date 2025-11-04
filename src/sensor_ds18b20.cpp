@@ -9,7 +9,7 @@ Sensor_DS18B20::Sensor_DS18B20(const char* id, const char* name, uint8_t pin, bo
 // Initialize the sensor
 void Sensor_DS18B20::setup() {
     _sensors.begin();
-    Serial.println("DS18B20 sensor initialized");
+    Serial.println(F("DS18B20 sensor initialized"));
 }
 
 // Read temperature from sensor
