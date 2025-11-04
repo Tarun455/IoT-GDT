@@ -14,7 +14,7 @@ The DS18B20 is a digital temperature sensor perfect for soil monitoring because:
 
 ### Required Components
 - DS18B20 waterproof temperature sensor
-- 4.7kΩ pull-up resistor
+- 4.7 kΩ pull-up (built-in on most sensors)
 - Jumper wires
 
 ### Wiring

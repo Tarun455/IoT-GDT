@@ -1,4 +1,4 @@
-# Updated Frugal IoT Environment & Soil Monitoring System
+# Updated Frugal IoT - for GDT
 
 A comprehensive soil monitoring solution built with the Frugal-IoT framework for ESP32/ESP8266 microcontrollers. This project monitors soil moisture, ambient temperature/humidity, and soil temperature with wireless connectivity and control capabilities.
 
@@ -23,7 +23,7 @@ A comprehensive soil monitoring solution built with the Frugal-IoT framework for
 
 ### Supported Boards
 
-The system is tested on the nodemcu-32s such as **insert link here**
+The system is tested on the nodemcu-32s such as:  **[link](https://robocraze.com/products/nodemcu-32-wifi-bluetooth-esp32-development-board30-pin?_pos=3&_psq=esp32&_ss=e&_v=1.0)**
 
 It should work on the following boards, with pin adjustments, but is not yet tested. 
 
@@ -36,11 +36,11 @@ It should work on the following boards, with pin adjustments, but is not yet tes
 
 These pins are specific to the Node MCU board
 
-| Component | Pin | Notes |
-|-----------|-----|-------|
-| Soil Moisture | GPIO 32 | Analog input |
-| DS18B20 | GPIO 5 | OneWire with 4.7kΩ pullup |
-| SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| Default address 0x44 (configurable to 0x45) |
+| Component | Pin |
+|-----------|-----|
+| Soil Moisture | GPIO 32 |
+| DS18B20 | GPIO 5 | 
+| SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| 
 
 ## Installation
 

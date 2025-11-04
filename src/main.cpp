@@ -43,7 +43,7 @@ void setup() {
   cb->outputs[0]->wireTo(frugal_iot.messages->path("ledbuiltin/on"));
 
   // DS18B20 sensor for soil temperature
-  frugal_iot.sensors->add(new Sensor_DS18B20("soil_temp", "Soil Temperature", 5, true));
+  frugal_iot.sensors->add(new Sensor_DS18B20("ds18b20", "Soil Temperature", 5, true));
 
   // Dont change below here - should be after setup the actuators, controls and sensors
   frugal_iot.setup(); // Has to be after setup sensors and actuators and controls and sysetm
