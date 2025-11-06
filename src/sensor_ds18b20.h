@@ -16,13 +16,13 @@ public:
      * @param id        Unique ID for the sensor
      * @param name      Human-readable sensor name
      * @param pin       GPIO pin connected to the DS18B20 data line
-     * @param retain    Whether to retain last sensor value (true/false)
      * @param index     Sensor index on the OneWire bus (default = 0)
+     * @param retain    Whether to retain last sensor value (true/false)
      * 
      * Note: Index 0 reads the first DS18B20 detected. Use higher index values
      * if multiple sensors share the same OneWire bus.
      */
-    Sensor_DS18B20(const char* id, const char* name, uint8_t pin, bool retain, uint8_t index = 0);
+    Sensor_DS18B20(const char* id, const char* name, uint8_t pin, uint8_t index, bool retain);
 
 protected:
     /**
