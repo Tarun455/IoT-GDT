@@ -4,7 +4,7 @@
  * @brief Constructor
  * 
  * Sets up OneWire communication and defines operational parameters.
- * Temperature range: -55°C to +125°C, displayed with 2 decimal places.
+ * Temperature range: -55°C to +125°C
  * Color label "orange" for UI or visualization systems.
  */
 Sensor_DS18B20::Sensor_DS18B20(const char* id, const char* name, uint8_t pin, uint8_t index, bool retain)
@@ -38,7 +38,7 @@ float Sensor_DS18B20::readFloat() {
     float tempC = _sensors.getTempCByIndex(_index); // Read temperature for specific index
 
     if (tempC != DEVICE_DISCONNECTED_C) {
-        return tempC; // Return valid temperature
+        return round (tempC); // Return valid temperature rounded to nearest integer
     } else {
         Serial.print(F("Error: DS18B20 sensor index "));
         Serial.print(_index);

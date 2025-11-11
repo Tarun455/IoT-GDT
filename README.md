@@ -173,6 +173,6 @@ This project uses the Frugal-IoT framework. Please refer to the framework's lice
 ## Support
 
 For issues related to:
-- **Hardware setup**: Check wiring diagrams and pin configurations
-- **Frugal-IoT framework**: Refer to the [official documentation](https://github.com/frugal-iot/frugal-iot)
+- **[Hardware setup](https://github.com/Tarun455/IoT-GDT/wiki/Hardware-Setup)**: Check wiring diagrams and pin configurations
+- **Frugal-IoT framework**: Refer to the [official documentation](https://github.com/mitra42/frugal-iot/wiki)
 - **PlatformIO**: Visit [PlatformIO documentation](https://docs.platformio.org/)
