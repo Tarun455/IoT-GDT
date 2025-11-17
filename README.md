@@ -1,11 +1,11 @@
-# Updated Frugal IoT Environment & Soil Monitoring System
+# Updated Frugal IoT - for GDT
 
 A comprehensive soil monitoring solution built with the Frugal-IoT framework for ESP32/ESP8266 microcontrollers. This project monitors soil moisture, ambient temperature/humidity, and soil temperature with wireless connectivity and control capabilities.
 
 ## Features
 
 - **Soil Moisture Monitoring**: Analog sensor with configurable range (0-100%)
-- **Environmental Sensing**: SHT30 temperature and humidity sensor via I2C
+- **Environmental Sensing**: SHT30 or SHT40 temperature and humidity sensor via I2C
 - **Soil Temperature**: DS18B20 waterproof temperature sensor
 - **Wireless Connectivity**: WiFi with MQTT publishing
 - **Control System**: Hysteresis-based control with LED feedback
@@ -18,10 +18,15 @@ A comprehensive soil monitoring solution built with the Frugal-IoT framework for
 ### Core Components
 - ESP32 or ESP8266 development board
 - Soil moisture sensor (analog)
-- SHT30 temperature/humidity sensor
+- SHT30 or SHT40 temperature/humidity sensor
 - DS18B20 waterproof temperature sensor
 
 ### Supported Boards
+
+The system is tested on the nodemcu-32s such as:  **[link](https://robocraze.com/products/nodemcu-32-wifi-bluetooth-esp32-development-board30-pin?_pos=3&_psq=esp32&_ss=e&_v=1.0)**
+
+It should work on the following boards, with pin adjustments, but is not yet tested. 
+
 - **ESP32-C3**: Lolin C3 Pico, C3 Mini
 - **ESP32-S2**: Lolin S2 Mini  
 - **ESP8266**: D1 Mini, D1 Mini Pro
@@ -29,17 +34,18 @@ A comprehensive soil monitoring solution built with the Frugal-IoT framework for
 
 ## Pin Configuration
 
-| Component | Pin | Notes |
-|-----------|-----|-------|
-| Soil Moisture | GPIO 3 | Analog input |
-| DS18B20 | GPIO 2 | OneWire with 4.7kΩ pullup |
-| SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| Default address 0x44 (configurable to 0x45) |
+These pins are specific to the Node MCU board
+
+| Component | Pin |
+|-----------|-----|
+| Soil Moisture | GPIO 32 |
+| DS18B20 | GPIO 5 | 
+| SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| 
 
 ## Installation
 
 ### Prerequisites
 - [PlatformIO](https://platformio.org/) installed
-- [Frugal-IoT library](https://github.com/frugal-iot/frugal-iot) 
 
 ### Setup
 1. Clone this repository
@@ -62,6 +68,8 @@ Add your WiFi credentials in `main.cpp`:
 frugal_iot.wifi->addWiFi(F("your_ssid"), F("your_password"));
 ```
 
+Alternatively you can leave this line commented out, and once the board is flashed look for a WiFi network called something like esp32-1234, connect to this network. A captive portal should appear where you can select the WiFi and Password.   It is possible to enter multiple WiFi's through either the captive Portal or as lines in main.cpp
+
 ### MQTT Configuration
 The system connects to the default Frugal-IoT MQTT broker:
 - **Host**: frugaliot.naturalinnovation.org
@@ -74,6 +82,9 @@ Adjust soil moisture sensor calibration in `main.cpp`:
 // Parameters: id, name, pin, dry_value, scale_factor, color, retain
 frugal_iot.sensors->add(new Sensor_Soil("soil", "Soil", 3, 4095, -100.0/4095, "brown", true));
 ```
+This can also be calibrated in the captive portal. Place the soil moisture sensor in completely dry soil and set it as 0%, then adjust pout in water till the soil can absorb no more and set it to 100%. 
+
+It is important to do it set the 0% value first, and it has to be 0% (as this is treated differently for calibration). 
 
 ### Power Management
 Configure reading intervals and power modes:
@@ -87,6 +98,9 @@ frugal_iot.configure_power(Power_Loop, 30000, 30000); // 30-second intervals, al
 Select the appropriate environment for your board:
 
 ```bash
+# Node MCU 32
+pio run -e nodemcu-32s
+
 # ESP32-C3 Pico
 pio run -e c3_pico
 
@@ -132,6 +146,8 @@ The project includes a custom DS18B20 sensor implementation in:
 - `src/sensor_ds18b20.h`
 - `src/sensor_ds18b20.cpp`
 
+This is likely to be removed at some point in the future when that sensor is supported by Frugal-IoT
+
 ## Troubleshooting
 
 ### Common Issues
@@ -157,6 +173,6 @@ This project uses the Frugal-IoT framework. Please refer to the framework's lice
 ## Support
 
 For issues related to:
-- **Hardware setup**: Check wiring diagrams and pin configurations
-- **Frugal-IoT framework**: Refer to the [official documentation](https://github.com/frugal-iot/frugal-iot)
+- **[Hardware setup](https://github.com/Tarun455/IoT-GDT/wiki/Hardware-Setup)**: Check wiring diagrams and pin configurations
+- **Frugal-IoT framework**: Refer to the [official documentation](https://github.com/mitra42/frugal-iot/wiki)
 - **PlatformIO**: Visit [PlatformIO documentation](https://docs.platformio.org/)
