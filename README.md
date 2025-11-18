@@ -1,4 +1,4 @@
-# Updated Frugal IoT - for GDT
+# Project: VARTA — Vital Agricultural Real-Time Analytics 
 
 A comprehensive soil monitoring solution built with the Frugal-IoT framework for ESP32/ESP8266 microcontrollers. This project monitors soil moisture, ambient temperature/humidity, and soil temperature with wireless connectivity and control capabilities.
 
@@ -158,6 +158,11 @@ This is likely to be removed at some point in the future when that sensor is sup
 
 ### Serial Monitor
 Monitor output at 460800 baud for debugging information.
+
+## Acknowledgement
+This project is developed under a Grant from the [Gram Disha Trust (GDT)](https://gramdisha.org).
+
+Reference material, background discussions, and implementation notes are available on the [blog](https://gramdisha.org/iot-agritech-smallholders/).
 
 ## License
 
