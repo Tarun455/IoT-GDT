@@ -10,13 +10,13 @@
 
 // Change the parameters here to match your ... 
 // organization, project, id, description
-System_Frugal frugal_iot("dev", "developers", "SHT30", "SHT30 Temperature and Humidity Sensor"); 
+System_Frugal frugal_iot("varta", "developers", "Agriculture", "Agriculture Sensor"); 
 
 void setup() {
   frugal_iot.pre_setup(); // Encapsulate setting up and starting serial and read main config
 
   // Override MQTT host, username and password if you have an "organization" other than "dev" (developers)
-  frugal_iot.configure_mqtt("frugaliot.naturalinnovation.org", "dev", "public");
+  frugal_iot.configure_mqtt("frugaliot.naturalinnovation.org", "varta", "notverysecret");
 
   // Configure power handling - type, cycle_ms, wake_ms 
   // power will be awake wake_ms then for the rest of cycle_ms be in a mode defined by type 
