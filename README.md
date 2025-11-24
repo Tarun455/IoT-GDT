@@ -90,7 +90,7 @@ It is important to do it set the 0% value first, and it has to be 0% (as this is
 Configure reading intervals and power modes:
 ```cpp
 // Parameters: mode, cycle_ms, wake_ms
-frugal_iot.configure_power(Power_Loop, 30000, 30000); // 30-second intervals, always awake
+frugal_iot.configure_power(Power_Deep, 3600000, 20000); // 30-second intervals, always awake
 ```
 
 ## Build Environments
@@ -162,7 +162,7 @@ Monitor output at 460800 baud for debugging information.
 ## Acknowledgement
 This project is developed under a Grant from the [Gram Disha Trust (GDT)](https://gramdisha.org).
 
-Reference material, background discussions, and implementation notes are available on the [blog](https://gramdisha.org/iot-agritech-smallholders/).
+Reference material, background discussions, and implementation notes are available on the [BLOG](https://gramdisha.org/iot-agritech-smallholders/).
 
 ## License
 
