@@ -90,7 +90,7 @@ It is important to do it set the 0% value first, and it has to be 0% (as this is
 Configure reading intervals and power modes:
 ```cpp
 // Parameters: mode, cycle_ms, wake_ms
-frugal_iot.configure_power(Power_Deep, 3600000, 20000); // 30-second intervals, always awake
+frugal_iot.configure_power(Power_Deep, 3600000, 20000); // 1 hour intervals
 ```
 
 ## Build Environments
