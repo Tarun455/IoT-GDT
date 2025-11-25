@@ -25,7 +25,7 @@ void setup() {
   // LightWiFi=Light + WiFi on (not working); 
   // Modem=Modem sleep - works but negligable power saving
   // Deep - works but slow recovery and slow response to UX so do not use except for multi minute cycles. 
-  frugal_iot.configure_power(Power_Deep, 3600000, 20000)   //wake up for 20 seconds, once an hour
+  frugal_iot.configure_power(Power_Deep, 3600000, 20000);   //wake up for 20 seconds, once an hour
 
   // system_oled and actuator_ledbuiltin added automatically on boards that have them.
 
