@@ -8,9 +8,6 @@
 #include "Frugal-IoT.h"
 #include "sensor_ds18b20.h"
 
-// Define the pin for DS18B20 soil temperature sensor
-#define SOIL_TEMP_PIN 2
-
 // Change the parameters here to match your ... 
 // organization, project, id, description
 System_Frugal frugal_iot("dev", "developers", "SHT30", "SHT30 Temperature and Humidity Sensor"); 
@@ -20,9 +17,6 @@ void setup() {
 
   // Override MQTT host, username and password if you have an "organization" other than "dev" (developers)
   frugal_iot.configure_mqtt("frugaliot.naturalinnovation.org", "dev", "public");
-
-// Soil sensor 0%=4095 100%=0 pin=3 smooth=0 color=brown
-  frugal_iot.sensors->add(new Sensor_Soil("soil", "Soil",3, 4095, -100.0/4095, "brown", true));
 
   // Configure power handling - type, cycle_ms, wake_ms 
   // power will be awake wake_ms then for the rest of cycle_ms be in a mode defined by type 
@@ -36,17 +30,20 @@ void setup() {
   // system_oled and actuator_ledbuiltin added automatically on boards that have them.
 
   // Add local wifis here, or see instructions in the wiki for adding via the /data
-  frugal_iot.wifi->addWiFi(F("mywifissid"),F("mywifipassword"));
+  frugal_iot.wifi->addWiFi(F("Tk"),F("9418036195"));
   
   // Add sensors, actuators and controls
   frugal_iot.sensors->add(new Sensor_SHT("SHT", SENSOR_SHT_ADDRESS, &I2C_WIRE, true));
+
+  // Soil sensor 0%=4095 100%=0 pin=3 smooth=0 color=brown
+  frugal_iot.sensors->add(new Sensor_Soil("soil", "Soil", 32, 4095, -100.0/4095, "brown", true));
   
   ControlHysterisis* cb = new ControlHysterisis("controlhysterisis", "Control", 50, 1, 0, 100);
   frugal_iot.controls->add(cb);
   cb->outputs[0]->wireTo(frugal_iot.messages->path("ledbuiltin/on"));
 
   // DS18B20 sensor for soil temperature
-  frugal_iot.sensors->add(new Sensor_DS18B20("soil_temp", "Soil Temperature", SOIL_TEMP_PIN, true));
+  frugal_iot.sensors->add(new Sensor_DS18B20("ds18b20", "Soil Temperature", 5, 0, true));
 
   // Dont change below here - should be after setup the actuators, controls and sensors
   frugal_iot.setup(); // Has to be after setup sensors and actuators and controls and sysetm
