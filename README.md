@@ -17,7 +17,7 @@ A comprehensive soil monitoring solution built with the Frugal-IoT framework for
 
 ### Core Components
 - ESP32 or ESP8266 development board
-- Soil moisture sensor (analog)
+- Capacitive Soil moisture sensor
 - SHT30 or SHT40 temperature/humidity sensor
 - DS18B20 waterproof temperature sensor
 
@@ -42,33 +42,68 @@ These pins are specific to the Node MCU board
 | DS18B20 | GPIO 5 | 
 | SHT30 |I2C (SDA → GPIO 21,SCL → GPIO 22)| 
 
-## Installation
+## Build & Installation Guide
 
-### Prerequisites
-- [PlatformIO](https://platformio.org/) installed
+This guide details how to set up a fresh development environment and build the VARTA firmware.
 
-### Setup
-1. Clone this repository
-2. Open in PlatformIO IDE or VS Code with PlatformIO extension
-3. Select your target board environment
-4. Build and upload
+### 1. Prerequisites
+To build this project, you need **Visual Studio Code** with the **PlatformIO IDE** extension.
 
-### Library Dependencies
-The following libraries are automatically managed by PlatformIO:
-- Frugal-IoT (main framework)
-- DallasTemperature (DS18B20 sensor)
-- OneWire (DS18B20 communication)
-- SHT85 (included in Frugal-IoT)
+1.  **Install VS Code**: Download and install from [code.visualstudio.com](https://code.visualstudio.com/).
+2.  **Install PlatformIO**:
+    * Open VS Code.
+    * Go to the Extensions view (click the square icon on the left sidebar or press `Ctrl+Shift+X`).
+    * Search for "PlatformIO IDE".
+    * Click **Install**.
+    * *Note: Wait for the installation to complete. It may prompt you to restart VS Code.*
 
-## Configuration
+### 2. Setup the Repository
+1.  **Clone the Repo** (for this git must be installed on you machine):
+    ```bash
+    git clone [https://github.com/tarun455/iot-gdt.git](https://github.com/tarun455/iot-gdt.git)
+    ```
+2.  **Open in VS Code**:
+    * Open VS Code.
+    * Click **File > Open Folder...**
+    * Select the `iot-gdt` folder you just cloned.
+3.  **Initialization**:
+    * PlatformIO will automatically detect the `platformio.ini` file and begin downloading the necessary toolchains and libraries (Frugal-IoT, DallasTemperature, etc.).
+    * Wait for the "configuring project" tasks to finish in the bottom status bar.
 
-### WiFi Setup
-Add your WiFi credentials in `main.cpp`:
-```cpp
-frugal_iot.wifi->addWiFi(F("your_ssid"), F("your_password"));
+### 3. Build Configuration
+The project supports multiple hardware boards defined in `platformio.ini`. You must select the environment that matches your hardware.
+
+**Primary Supported Board:**
+* `nodemcu-32s` (Default for VARTA deployments)
+
+**Other Environments:**
+* `c3_pico`, `s2_mini`, `d1_mini`, `ttgo`, `t3s3`
+
+### 4. How to Build & Upload
+
+#### Option A: Using the VS Code Interface (Recommended)
+1.  Click the **PlatformIO Alien Icon** on the left sidebar.
+2.  In the **Project Tasks** menu, expand the folder for your board (e.g., `nodemcu-32s`).
+3.  **Build**: Click **General > Build**. 
+    * *PlatformIO will compile the firmware and create the binary in `.pio/build/nodemcu-32s/firmware.bin`.*
+4.  **Upload**: Connect your board via USB and click **General > Upload**.
+5.  **Monitor**: Click **General > Monitor** to see serial output (ensure baud rate is 460800).
+
+#### Option B: Using the CLI Terminal
+Open a terminal in VS Code (`Terminal > New Terminal`) and run:
+
+```bash
+# Build for the default NodeMCU-32s
+pio run -e nodemcu-32s
+
+# Build and Upload
+pio run -e nodemcu-32s -t upload
+
+# Build for other boards (e.g., ESP8266 D1 Mini)
+pio run -e d1_mini
 ```
 
-Alternatively you can leave this line commented out, and once the board is flashed look for a WiFi network called something like esp32-1234, connect to this network. A captive portal should appear where you can select the WiFi and Password.   It is possible to enter multiple WiFi's through either the captive Portal or as lines in main.cpp
+Once the board is flashed look for a WiFi network called something like esp32-1234, connect to this network. A captive portal should appear where you can select the WiFi and Password. It is possible to enter multiple WiFi's through either the captive Portal or as lines in main.cpp
 
 ### MQTT Configuration
 The system connects to the default Frugal-IoT MQTT broker:
