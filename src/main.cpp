@@ -6,17 +6,17 @@
 
 // defines SENSOR_SHT_ADDRESS if dont define here or in platformio.ini
 #include "Frugal-IoT.h"
-#include "sensor_ds18b20.h"
+
 
 // Change the parameters here to match your ... 
 // organization, project, id, description
-System_Frugal frugal_iot("dev", "developers", "SHT30", "SHT30 Temperature and Humidity Sensor"); 
+System_Frugal frugal_iot("varta", "developers", "Agriculture", "Agriculture Sensor"); 
 
 void setup() {
   frugal_iot.pre_setup(); // Encapsulate setting up and starting serial and read main config
 
   // Override MQTT host, username and password if you have an "organization" other than "dev" (developers)
-  frugal_iot.configure_mqtt("frugaliot.naturalinnovation.org", "dev", "public");
+  frugal_iot.configure_mqtt("frugaliot.naturalinnovation.org", "varta", "notverysecret");
 
   // Configure power handling - type, cycle_ms, wake_ms 
   // power will be awake wake_ms then for the rest of cycle_ms be in a mode defined by type 
@@ -25,7 +25,7 @@ void setup() {
   // LightWiFi=Light + WiFi on (not working); 
   // Modem=Modem sleep - works but negligable power saving
   // Deep - works but slow recovery and slow response to UX so do not use except for multi minute cycles. 
-  frugal_iot.configure_power(Power_Loop, 30000, 30000); // Take a reading every 30 seconds - awake all the time
+  frugal_iot.configure_power(Power_Deep, 3600000, 20000)   //wake up for 20 seconds, once an hour
 
   // system_oled and actuator_ledbuiltin added automatically on boards that have them.
 

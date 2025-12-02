@@ -1,4 +1,4 @@
-# IoT-GDT Simulations
+# VARTA-IoT Simulations
 
 ## Overview
 
@@ -452,7 +452,6 @@ Once validation simulations are successful:
 ### Related Documentation
 - **Main README**: See `../README.md` for hardware and firmware details
 - **Main Code**: See `../src/main.cpp` for sensor integration
-- **Sensor Driver**: See `../src/sensor_ds18b20.cpp` for DS18B20 implementation
 
 ### MATLAB/Simulink Resources
 - [Simulink Documentation](https://www.mathworks.com/help/simulink/)
@@ -460,18 +459,5 @@ Once validation simulations are successful:
 - [Environmental Sensors](https://www.mathworks.com/help/physmod/simscape/sensors.html)
 
 ## License
+The Similations are part of the VARTA project Funded through a Grant by Gram Disha Trust
 
-These simulations are part of the Frugal-IoT project. See the main project LICENSE file for details.
-
-## Contact & Support
-
-For simulation-specific issues, questions, or contributions:
-- **Project**: Graam Disha Trust (GDT) Sensor System
-- **Repository**: https://github.com/abhayth10/IoT-GDT
-- **Primary Contact**: See main repository
-
----
-
-**Last Updated**: November 2025  
-**Simulation Version**: 1.0  
-**Compatible With**: Frugal-IoT Framework, MATLAB R2020a+
