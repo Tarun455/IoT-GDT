@@ -4,6 +4,14 @@
  * Optional: SENSOR_SHT_ADDRESS - defaults to 0x44, (note the D1 shields default to 0x45)
  */
 
+
+#ifndef SYSTEM_POWER_CYCLE
+  #define SYSTEM_POWER_CYCLE 3600000 // Every hour
+#endif
+#ifndef SYSTEM_POWER_WAKE
+  #define SYSTEM_POWER_WAKE 20000 // Wake for 20s and take readings
+#endif
+
 // defines SENSOR_SHT_ADDRESS if dont define here or in platformio.ini
 #include "Frugal-IoT.h"
 
@@ -25,7 +33,7 @@ void setup() {
   // LightWiFi=Light + WiFi on (not working); 
   // Modem=Modem sleep - works but negligable power saving
   // Deep - works but slow recovery and slow response to UX so do not use except for multi minute cycles. 
-  frugal_iot.configure_power(Power_Deep, 3600000, 20000)   //wake up for 20 seconds, once an hour
+  frugal_iot.configure_power(Power_Deep, SYSTEM_POWER_CYCLE, SYSTEM_POWER_WAKE); 
 
   // system_oled and actuator_ledbuiltin added automatically on boards that have them.
 
